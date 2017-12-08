@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PopularMovies_1</string>
+    <string name="no_connectivity">Network connection is not available! \nSwipe down to refresh</string>
+    <string name="err_msg">Something went wrong! \nSwipe down to refresh</string>
+
+    <string name="default_message">Fetching movies...\nPlease wait...</string>
+    <string name="rating_hint">User\'s rating</string>
 </resources>
