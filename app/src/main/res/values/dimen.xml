@@ -12,4 +12,8 @@
     <dimen name="dimen_6">6dp</dimen>
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="rating_text_size">16sp</dimen>
+    <dimen name="title_text_size">16sp</dimen>
+    <dimen name="details_left_margin">160dp</dimen>
+    <dimen name="overview_margin_top">200sp</dimen>
+    <dimen name="backdrop_height">250dp</dimen>
 </resources>

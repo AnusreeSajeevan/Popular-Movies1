@@ -7,7 +7,7 @@
     android:clipToPadding="false"
     android:background="@color/background"
     android:id="@+id/swipe_refresh_layout"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
     <FrameLayout
         android:clipToPadding="false"
         android:layout_width="match_parent"

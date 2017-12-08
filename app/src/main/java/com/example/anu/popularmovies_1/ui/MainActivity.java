@@ -1,5 +1,6 @@
-package com.example.anu.popularmovies_1;
+package com.example.anu.popularmovies_1.ui;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -9,10 +10,10 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.anu.popularmovies_1.R;
 import com.example.anu.popularmovies_1.adapter.MovieAdapter;
 import com.example.anu.popularmovies_1.model.Movie;
 import com.example.anu.popularmovies_1.model.MovieResponse;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int MOVIES_LOADER_ID = 0;
     private static final Bundle bundle = null;
+    static String KEY_MOVIE_RESPONSE = "movie_response";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +92,18 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         getSupportLoaderManager().initLoader(MOVIES_LOADER_ID, bundle, callBacks);
     }
 
+    /**
+     * method overriden to redirect to {@link MovieDetailsActivity}
+     * on clicking movie thumbnail
+     * @param pos
+     */
     @Override
     public void onThumbnailClick(int pos) {
-
+        Intent iDetail = new Intent(MainActivity.this, MovieDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(KEY_MOVIE_RESPONSE, movieList.get(pos));
+        iDetail.putExtras(bundle);
+        startActivity(iDetail);
     }
 
     @Override
