@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +21,16 @@
         </activity>
         <activity android:name=".ui.MovieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!--MainActivity is treated
+        as the parent of SettingsActivity and the up button is displayed
+        Make sure to use the attribute android:launchMode singleTop
+        -->
+        <activity android:name=".ui.settings.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

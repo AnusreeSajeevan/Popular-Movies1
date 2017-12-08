@@ -5,4 +5,18 @@
 
     <string name="default_message">Fetching movies...\nPlease wait...</string>
     <string name="rating_hint">User\'s rating</string>
+
+    <!--  used by preferences -->
+    <string name="pref_sortby_title">Sort By</string>
+
+    <string name="pref_sortby_popular_label">Most Popular</string>
+    <string name="pref_sortby_top_rated_label">Highest Rated</string>
+
+    <string name="pref_sortby_popular_value">popular</string>
+    <string name="pref_sortby_top_rated_value">top_rated</string>
+
+    <string name="pref_sortby_def_value">popular</string>
+    <string name="pref_sortby_key">sort_by</string>
+    <!---->
+    <string name="settings">Settings</string>
 </resources>

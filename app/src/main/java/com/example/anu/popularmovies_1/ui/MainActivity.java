@@ -1,7 +1,9 @@
 package com.example.anu.popularmovies_1.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,13 +12,17 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.anu.popularmovies_1.MoviesPreferences;
 import com.example.anu.popularmovies_1.R;
 import com.example.anu.popularmovies_1.adapter.MovieAdapter;
 import com.example.anu.popularmovies_1.model.Movie;
 import com.example.anu.popularmovies_1.model.MovieResponse;
+import com.example.anu.popularmovies_1.ui.settings.SettingsActivity;
 import com.example.anu.popularmovies_1.utils.MovieDBUtils;
 import com.example.anu.popularmovies_1.utils.MoviesJsonUtils;
 import com.example.anu.popularmovies_1.utils.NetworkUtils;
@@ -35,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MovieAdapter.OnClickHandleListener,
-        LoaderManager.LoaderCallbacks<MovieResponse>{
+        LoaderManager.LoaderCallbacks<MovieResponse>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     @BindView(R.id.recyclerview_movies)
     RecyclerView recyclerviewMovies;
@@ -53,12 +59,21 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     private static final Bundle bundle = null;
     static String KEY_MOVIE_RESPONSE = "movie_response";
 
+    //flag to indicate if preference value has been updated or not
+    private static boolean PREFERENCE_UPDATED = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        /**
+         * register MainActivity as a OnPreferenceChangedListener in onCreate
+         * inorder to receive callbacks when preference have been changed.
+         * We must unregister OnPreferenceChangedListener in onDestroy inorder to avoid any memory leaks
+         */
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         /**
          * set listener for {@link #swipeRefreshLayout},
@@ -85,11 +100,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         recyclerviewMovies.setLayoutManager(new GridLayoutManager(MainActivity.this, columnCount));
         recyclerviewMovies.setAdapter(movieAdapter);
         LoaderManager.LoaderCallbacks callBacks = MainActivity.this;
+        sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
 
         if (!swipeRefreshLayout.isRefreshing())
             swipeRefreshLayout.setRefreshing(true);
-        sortBy = MovieDBUtils.PARAM_VALUE_POPULAR;
+
+        setTitile(sortBy);
         getSupportLoaderManager().initLoader(MOVIES_LOADER_ID, bundle, callBacks);
+    }
+
+
+    /**
+     * set action bar title to the sort order
+     */
+    private void setTitile(String sortBy) {
+        if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_popular_value)))
+            getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_popular_label));
+        else if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_top_rated_value)))
+            getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_top_rated_label));
     }
 
     /**
@@ -222,4 +250,64 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         Log.d(TAG, "onLoaderReset");
 
     }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        PREFERENCE_UPDATED = true;
+    }
+
+    /**
+     * unregister MainActivity as OnPreferenceChangedListener to avoid any memory leakage
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        Log.d(TAG, "onDestroy");
+    }
+
+    /**
+     * this method is called when user coming to the activity from another
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        /**
+         * fetch movies again
+         * if the user preference for the sort order have been changed
+         * and set the flag false
+         */
+        if (PREFERENCE_UPDATED) {
+
+            if (!swipeRefreshLayout.isRefreshing())
+                swipeRefreshLayout.setRefreshing(true);
+
+            //get preference value
+            sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
+            getSupportLoaderManager().restartLoader(MOVIES_LOADER_ID, null, this);
+            PREFERENCE_UPDATED = false;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int selectedId = item.getItemId();
+        switch (selectedId) {
+            case R.id.action_settings:
+                Intent iSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(iSettings);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }
