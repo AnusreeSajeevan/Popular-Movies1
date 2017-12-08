@@ -62,6 +62,24 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieHolder> {
                 clickHandleListener.onThumbnailClick(position);
             }
         });
+        
+        setEnterAnimation(holder.cardView, position);
+    }
+
+    /**
+     * method to set enter animation to each recyclerview item
+     * if that item is not already added
+     * @param cardView
+     * @param position
+     */
+    private void setEnterAnimation(CardView cardView, int position) {
+
+        if(position > lastAnimatedPosition){
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.enter_anim);
+            cardView.setAnimation(animation);
+            lastAnimatedPosition = position;
+        }
+
     }
 
     @Override
