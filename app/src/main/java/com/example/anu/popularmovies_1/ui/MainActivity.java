@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     private static final int MOVIES_LOADER_ID = 0;
     private static final Bundle bundle = null;
     static String KEY_MOVIE_RESPONSE = "movie_response";
+    LoaderManager.LoaderCallbacks callBacks = MainActivity.this;
 
     //flag to indicate if preference value has been updated or not
     private static boolean PREFERENCE_UPDATED = false;
@@ -82,7 +83,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //fetchMovies();
+                if (NetworkUtils.isNetworkAvailable(MainActivity.this)){
+                    getSupportLoaderManager().restartLoader(MOVIES_LOADER_ID, null, callBacks);
+                }
+                else {
+                    showError(getResources().getString(R.string.no_connectivity));
+                }
             }
         });
         setupMoviesList();
@@ -99,14 +105,32 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
         recyclerviewMovies.setLayoutManager(new GridLayoutManager(MainActivity.this, columnCount));
         recyclerviewMovies.setAdapter(movieAdapter);
-        LoaderManager.LoaderCallbacks callBacks = MainActivity.this;
-        sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
+        getSoryOrderAndSetup();
+        if (NetworkUtils.isNetworkAvailable(MainActivity.this)){
+            getSupportLoaderManager().initLoader(MOVIES_LOADER_ID, bundle, callBacks);
+        }
+        else {
+            showError(getResources().getString(R.string.no_connectivity));
+        }
+    }
 
+    /*
+      get the user preferred sort order and set title
+       */
+    private void getSoryOrderAndSetup() {
+        showRefreshing();
+        //get preference value
+        sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
+        setTitile(sortBy);
+    }
+
+
+    /*
+     *method to show refreshing
+     */
+    private void showRefreshing() {
         if (!swipeRefreshLayout.isRefreshing())
             swipeRefreshLayout.setRefreshing(true);
-
-        setTitile(sortBy);
-        getSupportLoaderManager().initLoader(MOVIES_LOADER_ID, bundle, callBacks);
     }
 
 
@@ -273,20 +297,22 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     protected void onStart() {
         super.onStart();
 
+
         /**
          * fetch movies again
          * if the user preference for the sort order have been changed
          * and set the flag false
          */
         if (PREFERENCE_UPDATED) {
-
-            if (!swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(true);
-
-            //get preference value
-            sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
-            getSupportLoaderManager().restartLoader(MOVIES_LOADER_ID, null, this);
-            PREFERENCE_UPDATED = false;
+            if (NetworkUtils.isNetworkAvailable(MainActivity.this)){
+                getSoryOrderAndSetup();
+                getSupportLoaderManager().restartLoader(MOVIES_LOADER_ID, null, callBacks);
+                PREFERENCE_UPDATED = false;
+            }
+            else
+            {
+                showError(getResources().getString(R.string.no_connectivity));
+            }
         }
     }
 
