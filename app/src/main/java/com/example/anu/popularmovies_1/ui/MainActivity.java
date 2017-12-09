@@ -217,9 +217,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         if (null!=data){
             List<Movie> movies = data.getResults();
             if (movies.size()!=0 || null == data){
-                for (Movie movie : movies){
-                    movieList.add(movie);
-                }
+                movieList.addAll(movies);
                 movieAdapter.notifyDataSetChanged();
             }
             else {
