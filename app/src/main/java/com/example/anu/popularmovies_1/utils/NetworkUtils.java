@@ -21,7 +21,7 @@ public class NetworkUtils {
 
     /**
      * method to check network is available or not
-     * @param context
+     * @param context the context instance
      * @return true if network is available, otherwise return false
      */
     public static boolean isNetworkAvailable(Context context) {
@@ -33,8 +33,8 @@ public class NetworkUtils {
 
     /**
      * method to build the url from the sort category and api key
-     * @param sortCategory
-     * @return
+     * @param sortCategory the selected sort order
+     * @return created url basd on the sort order
      * @throws MalformedURLException
      */
     public static URL buildUrl(String sortCategory) throws MalformedURLException {

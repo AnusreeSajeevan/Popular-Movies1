@@ -22,7 +22,6 @@ import com.example.anu.popularmovies_1.adapter.MovieAdapter;
 import com.example.anu.popularmovies_1.model.Movie;
 import com.example.anu.popularmovies_1.model.MovieResponse;
 import com.example.anu.popularmovies_1.ui.settings.SettingsActivity;
-import com.example.anu.popularmovies_1.utils.MovieDBUtils;
 import com.example.anu.popularmovies_1.utils.MoviesJsonUtils;
 import com.example.anu.popularmovies_1.utils.NetworkUtils;
 import com.google.gson.Gson;
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     /**
      * method overriden to redirect to {@link MovieDetailsActivity}
      * on clicking movie thumbnail
-     * @param pos
+     * @param pos clicked thumbnail position
      */
     @Override
     public void onThumbnailClick(int pos) {
@@ -247,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
      * method to get determine the column count in movies list
      * based on screen orientation
      * column count = 2, for portrait, 3 for landscape
-     * @return
+     * @return grid column count depending on the orientation
      */
     private int setColumnCount() {
         int count;

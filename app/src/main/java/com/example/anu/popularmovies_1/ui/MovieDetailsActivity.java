@@ -122,13 +122,13 @@ public class MovieDetailsActivity extends AppCompatActivity {
     /**
      * method to generate palette asynchronously
      *
-     * @param bitmap
+     * @param bitmap the bitmap from which palette is to be created
      */
     public void createPaletteAsync(Bitmap bitmap) {
         Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
             /**
              *Use palette on a different thread using onGenerated
-             * @param palette
+             * @param palette generated palatte
              */
             @Override
             public void onGenerated(Palette palette) {

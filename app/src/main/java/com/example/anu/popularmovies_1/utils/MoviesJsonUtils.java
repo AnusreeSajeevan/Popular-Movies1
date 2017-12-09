@@ -12,9 +12,9 @@ public class MoviesJsonUtils {
 
     /**
      * method to get JSONObject from network response
-     * @param response
+     * @param response the response to get jsonobject from
      * @return json object
-     * @throws JSONException
+     * @throws JSONException exception
      */
     public static JSONObject getJSONObjectFromResponse(String response) throws JSONException {
         return new JSONObject(response);

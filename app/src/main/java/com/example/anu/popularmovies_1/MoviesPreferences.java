@@ -28,7 +28,7 @@ public class MoviesPreferences {
 
     /**
      * method to return user preferred sort by preference
-     * @param context
+     * @param context the context instance
      * @return preferred sort by preference
      */
     public static String getUserPreferredSortByValue(Context context){

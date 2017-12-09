@@ -67,8 +67,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieHolder> {
     /**
      * method to set enter animation to each recyclerview item
      * if that item is not already added
-     * @param cardView
-     * @param position
+     * @param cardView item on which animation is to be set
+     * @param position item position
      */
     private void setEnterAnimation(CardView cardView, int position) {
 
