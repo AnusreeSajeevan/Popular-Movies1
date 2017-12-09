@@ -166,9 +166,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
             @Override
             protected void onStartLoading() {
-
-
-                Log.d(TAG, "onStartLoading");
                 if (movieResponse!=null){
                     deliverResult(movieResponse);
                 }
@@ -188,19 +185,14 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
              */
             @Override
             public MovieResponse loadInBackground() {
-                Log.d(TAG, "loadInBackground");
                 try {
 
                     URL url = NetworkUtils.buildUrl(sortBy);
-                    Log.v(TAG, "url : "+url);
                     MovieResponse movieResponse = null;
                     try {
                         String response = NetworkUtils.getResponseFromHttpUrl(url);
-                        Log.v(TAG, "response : " + response);
                         JSONObject jsonObject = MoviesJsonUtils.getJSONObjectFromResponse(response);
-                        Log.v(TAG, "jsonObject : " + jsonObject);
                         movieResponse = new Gson().fromJson(jsonObject.toString(), MovieResponse.class);
-                        Log.v(TAG, "movieResponse : " + movieResponse);
                         return movieResponse;
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -217,7 +209,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
     @Override
     public void onLoadFinished(Loader<MovieResponse> loader, MovieResponse data) {
-        Log.d(TAG, "onLoadFinished");
         movieList.clear();
         recyclerviewMovies.setVisibility(View.VISIBLE);
         tvError.setVisibility(View.GONE);
@@ -271,7 +262,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
     @Override
     public void onLoaderReset(Loader<MovieResponse> loader) {
-        Log.d(TAG, "onLoaderReset");
 
     }
 
@@ -287,7 +277,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     protected void onDestroy() {
         super.onDestroy();
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-        Log.d(TAG, "onDestroy");
     }
 
     /**

@@ -49,7 +49,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieHolder> {
         Movie movie = movieList.get(position);
         holder.txtMovieName.setText(movie.getTitle());
         holder.txtRating.setText(String.valueOf(movie.getVoteAverage()));
-        Log.d(TAG, "poster path : " + movie.getPosterPath());
         Picasso.with(context)
                 .load(movie.getPosterPath()).fit()
                 .placeholder(R.drawable.ic_place_holder)
