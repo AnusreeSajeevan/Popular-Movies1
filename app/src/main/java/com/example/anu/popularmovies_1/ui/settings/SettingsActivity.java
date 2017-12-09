@@ -11,6 +11,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_settings);
-        getSupportActionBar().setTitle(getResources().getString(R.string.settings));
+        if (null != getSupportActionBar())
+            getSupportActionBar().setTitle(getResources().getString(R.string.settings));
     }
 }

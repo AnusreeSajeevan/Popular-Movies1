@@ -136,10 +136,12 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
      * set action bar title to the sort order
      */
     private void setTitile(String sortBy) {
-        if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_popular_value)))
-            getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_popular_label));
-        else if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_top_rated_value)))
-            getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_top_rated_label));
+        if (null != getSupportActionBar()){
+            if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_popular_value)))
+                getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_popular_label));
+            else if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_top_rated_value)))
+                getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_top_rated_label));
+        }
     }
 
     /**
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
                 try {
 
                     URL url = NetworkUtils.buildUrl(sortBy);
-                    MovieResponse movieResponse = null;
+                    MovieResponse movieResponse;
                     try {
                         String response = NetworkUtils.getResponseFromHttpUrl(url);
                         JSONObject jsonObject = MoviesJsonUtils.getJSONObjectFromResponse(response);
@@ -216,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
         if (null!=data){
             List<Movie> movies = data.getResults();
-            if (movies.size()!=0 || null == data){
+            if (movies.size()!=0){
                 movieList.addAll(movies);
                 movieAdapter.notifyDataSetChanged();
             }
