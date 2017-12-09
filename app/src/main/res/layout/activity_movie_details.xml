@@ -33,13 +33,13 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <ImageView
-        android:elevation="@dimen/dimen_20"
+        android:elevation="@dimen/margin_20"
         android:id="@+id/img_poster"
-        android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_marginLeft="@dimen/margin_10"
         app:layout_anchorGravity="bottom|left"
         app:layout_anchor="@id/appbar_layout"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/details_poster_width"
+        android:layout_height="@dimen/details_poster_height"
         android:src="@drawable/ic_place_holder"
         android:layout_marginTop="?attr/actionBarSize"/>
 
@@ -51,7 +51,7 @@
             android:clipChildren="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/dimen_10">
+            android:padding="@dimen/margin_10">
             <LinearLayout
                 android:id="@+id/layout"
                 android:orientation="vertical"
@@ -66,8 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_marginTop="@dimen/dimen_5"
-                    android:drawablePadding="@dimen/dimen_5"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:drawablePadding="@dimen/margin_5"
                     android:id="@+id/txt_rating"
                     android:drawableLeft="@drawable/ic_rating"
                     android:textSize="@dimen/rating_text_size"
@@ -80,13 +80,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_marginTop="@dimen/dimen_5"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:id="@+id/txt_release_date"
                     android:textSize="@dimen/text_size_14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_marginTop="@dimen/dimen_5"
+                    android:layout_marginTop="@dimen/margin_5"
                     android:id="@+id/txt_language"
                     android:textSize="@dimen/text_size_16"
                     android:layout_width="wrap_content"
@@ -96,8 +96,8 @@
                 android:background="@color/grey_seperator"
                 android:layout_marginTop="@dimen/overview_margin_top"
                 android:id="@+id/txt_overview"
-                android:padding="@dimen/dimen_10"
-                android:lineSpacingExtra="@dimen/dimen_5"
+                android:padding="@dimen/margin_10"
+                android:lineSpacingExtra="@dimen/margin_5"
                 android:textSize="@dimen/text_size_14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:id="@+id/card_view"
-    android:layout_height="290dp"
-    card_view:cardCornerRadius="4dp"
+    android:layout_height="@dimen/item_height"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:orientation="vertical"
@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/img_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="220dp" />
+            android:layout_height="@dimen/thumbnail_height" />
         <RelativeLayout
-            android:padding="@dimen/dimen_5"
+            android:padding="@dimen/margin_5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -31,15 +31,14 @@
 
 
             <TextView
-                android:layout_marginTop="@dimen/dimen_5"
+                android:layout_marginTop="@dimen/margin_5"
                 android:layout_below="@+id/txt_movie_name"
                 android:drawableLeft="@drawable/ic_rating"
-                android:drawablePadding="@dimen/dimen_5"
-                android:layout_marginRight="@dimen/dimen_5"
+                android:drawablePadding="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
                 android:id="@+id/txt_rating"
                 android:textSize="@dimen/rating_text_size"
                 android:textColor="@color/colorBlack"
-                android:text="3.2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
