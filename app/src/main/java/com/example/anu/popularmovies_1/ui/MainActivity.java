@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
 
         recyclerviewMovies.setLayoutManager(new GridLayoutManager(MainActivity.this, columnCount));
         recyclerviewMovies.setAdapter(movieAdapter);
-        getSoryOrderAndSetup();
+        getSortOrderAndSetup();
         if (NetworkUtils.isNetworkAvailable(MainActivity.this)){
             getSupportLoaderManager().initLoader(MOVIES_LOADER_ID, bundle, callBacks);
         }
@@ -115,11 +115,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     /*
       get the user preferred sort order and set title
        */
-    private void getSoryOrderAndSetup() {
+    private void getSortOrderAndSetup() {
         showRefreshing();
         //get preference value
         sortBy = MoviesPreferences.getUserPreferredSortByValue(MainActivity.this);
-        setTitile(sortBy);
+        setTitle(sortBy);
     }
 
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     /**
      * set action bar title to the sort order
      */
-    private void setTitile(String sortBy) {
+    private void setTitle(String sortBy) {
         if (null != getSupportActionBar()){
             if (sortBy.equalsIgnoreCase(getResources().getString(R.string.pref_sortby_popular_value)))
                 getSupportActionBar().setTitle(getResources().getString(R.string.pref_sortby_popular_label));
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     }
 
     /**
-     * method overriden to redirect to {@link MovieDetailsActivity}
+     * method overiden to redirect to {@link MovieDetailsActivity}
      * on clicking movie thumbnail
      * @param pos clicked thumbnail position
      */
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     }
 
     /**
-     * mthod to show appropriate error message
+     * method to show appropriate error message
      * @param error the error message to be shown
      */
     private void showError(String error) {
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
          */
         if (PREFERENCE_UPDATED) {
             if (NetworkUtils.isNetworkAvailable(MainActivity.this)){
-                getSoryOrderAndSetup();
+                getSortOrderAndSetup();
                 getSupportLoaderManager().restartLoader(MOVIES_LOADER_ID, null, callBacks);
                 PREFERENCE_UPDATED = false;
             }

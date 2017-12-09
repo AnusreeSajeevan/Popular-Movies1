@@ -44,7 +44,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     /**
      * method to set user's preference summary
      * @param preference preference object which is to be saved
-     * @param value preference vlue to be saved
+     * @param value preference value to be saved
      */
     private void setPreferenceSummary(Preference preference, Object value) {
         if (preference instanceof ListPreference){

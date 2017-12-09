@@ -22,7 +22,7 @@ public class Movie implements Parcelable{
     @SerializedName("poster_path")
     private String posterPath;
     @SerializedName("original_language")
-    private String originalLangauge;
+    private String originalLanguage;
 
     protected Movie(Parcel in) {
         voteCount = in.readInt();
@@ -32,7 +32,7 @@ public class Movie implements Parcelable{
         title = in.readString();
         popularity = in.readDouble();
         posterPath = in.readString();
-        originalLangauge = in.readString();
+        originalLanguage = in.readString();
         originalTitle = in.readString();
         adult = in.readByte() != 0;
         backdropPath = in.readString();
@@ -123,12 +123,12 @@ public class Movie implements Parcelable{
         this.posterPath = posterPath;
     }
 
-    public String getOriginalLangauge() {
-        return originalLangauge;
+    public String getOriginalLanguage() {
+        return originalLanguage;
     }
 
-    public void setOriginalLangauge(String originalLangauge) {
-        this.originalLangauge = originalLangauge;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     public String getOriginalTitle() {
@@ -187,7 +187,7 @@ public class Movie implements Parcelable{
         parcel.writeString(title);
         parcel.writeDouble(popularity);
         parcel.writeString(posterPath);
-        parcel.writeString(originalLangauge);
+        parcel.writeString(originalLanguage);
         parcel.writeString(originalTitle);
         parcel.writeByte((byte) (adult ? 1 : 0));
         parcel.writeString(backdropPath);

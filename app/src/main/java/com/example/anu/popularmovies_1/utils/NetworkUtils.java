@@ -34,7 +34,7 @@ public class NetworkUtils {
     /**
      * method to build the url from the sort category and api key
      * @param sortCategory the selected sort order
-     * @return created url basd on the sort order
+     * @return created url based on the sort order
      * @throws MalformedURLException
      */
     public static URL buildUrl(String sortCategory) throws MalformedURLException {

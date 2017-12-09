@@ -128,7 +128,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
             /**
              *Use palette on a different thread using onGenerated
-             * @param palette generated palatte
+             * @param palette generated palette
              */
             @Override
             public void onGenerated(Palette palette) {
