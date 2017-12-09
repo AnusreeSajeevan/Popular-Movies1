@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Design on 27-11-2017.
+ *
  */
 
 public class MovieHolder extends RecyclerView.ViewHolder{

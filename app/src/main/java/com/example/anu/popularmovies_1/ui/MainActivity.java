@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    private static MovieAdapter movieAdapter;
+    private MovieAdapter movieAdapter;
     private static List<Movie> movieList = new ArrayList<>();
     private String sortBy;
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
     }
 
     /**
-     * method overiden to redirect to {@link MovieDetailsActivity}
+     * method over riden to redirect to {@link MovieDetailsActivity}
      * on clicking movie thumbnail
      * @param pos clicked thumbnail position
      */

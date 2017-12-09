@@ -37,7 +37,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
 
     private Movie movie;
-    private static final String TAG = MovieDetailsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

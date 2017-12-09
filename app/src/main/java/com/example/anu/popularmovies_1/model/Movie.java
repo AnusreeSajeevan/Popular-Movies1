@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Design on 25-11-2017.
+ *
  */
 
 public class Movie implements Parcelable{
@@ -175,7 +176,21 @@ public class Movie implements Parcelable{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Movie{" +
+                "voteCount=" + voteCount +
+                ", id=" + id +
+                ", video=" + video +
+                ", voteAverage=" + voteAverage +
+                ", title='" + title + '\'' +
+                ", popularity=" + popularity +
+                ", posterPath='" + posterPath + '\'' +
+                ", originalLanguage='" + originalLanguage + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", adult=" + adult +
+                ", backdropPath='" + backdropPath + '\'' +
+                ", overview='" + overview + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                '}';
     }
 
     @Override

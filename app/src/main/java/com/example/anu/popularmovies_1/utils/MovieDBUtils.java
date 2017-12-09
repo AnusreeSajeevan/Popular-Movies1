@@ -2,6 +2,7 @@ package com.example.anu.popularmovies_1.utils;
 
 /**
  * Created by Design on 08-12-2017.
+ *
  */
 
 public class MovieDBUtils {

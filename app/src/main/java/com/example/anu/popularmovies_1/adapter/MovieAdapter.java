@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by Design on 27-11-2017.
+ *
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieHolder> {

@@ -5,10 +5,10 @@ import org.json.JSONObject;
 
 /**
  * Created by Design on 30-11-2017.
+ *
  */
 
 public class MoviesJsonUtils {
-    private static final String TAG = MoviesJsonUtils.class.getSimpleName();
 
     /**
      * method to get JSONObject from network response
