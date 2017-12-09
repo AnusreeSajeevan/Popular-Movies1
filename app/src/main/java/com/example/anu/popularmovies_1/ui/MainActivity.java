@@ -68,16 +68,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        /**
-         * register MainActivity as a OnPreferenceChangedListener in onCreate
-         * inorder to receive callbacks when preference have been changed.
-         * We must unregister OnPreferenceChangedListener in onDestroy inorder to avoid any memory leaks
+        /*
+          register MainActivity as a OnPreferenceChangedListener in onCreate
+          inorder to receive callbacks when preference have been changed.
+          We must unregister OnPreferenceChangedListener in onDestroy inorder to avoid any memory leaks
          */
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
-        /**
-         * set listener for {@link #swipeRefreshLayout},
-         * to fetch movies again on refresh
+        /*
+          set listener for {@link #swipeRefreshLayout},
+          to fetch movies again on refresh
          */
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -286,10 +286,10 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnCl
         super.onStart();
 
 
-        /**
-         * fetch movies again
-         * if the user preference for the sort order have been changed
-         * and set the flag false
+        /*
+          fetch movies again
+          if the user preference for the sort order have been changed
+          and set the flag false
          */
         if (PREFERENCE_UPDATED) {
             if (NetworkUtils.isNetworkAvailable(MainActivity.this)){

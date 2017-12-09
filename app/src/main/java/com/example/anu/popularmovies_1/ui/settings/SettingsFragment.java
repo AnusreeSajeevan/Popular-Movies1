@@ -29,8 +29,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         //add created preference xml file
         addPreferencesFromResource(R.xml.movie_pref);
 
-        /**
-         * set preference summary to each preference that is not a CheckboxPreference
+        /*
+          set preference summary to each preference that is not a CheckboxPreference
          */
         PreferenceScreen preferenceScreen = getPreferenceScreen();
         SharedPreferences sharedPreferences = preferenceScreen.getSharedPreferences();

@@ -1,7 +1,7 @@
 package com.example.anu.popularmovies_1;
 
-/**
- * Created by Design on 30-11-2017.
+/*
+  Created by Design on 30-11-2017.
  */
 
 import android.content.Context;

@@ -45,8 +45,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_details);
         ButterKnife.bind(this);
 
-        /**
-         * get clicked Movie object passed from MainActivity
+        /*
+          get clicked Movie object passed from MainActivity
          */
         movie = getIntent().getParcelableExtra(MainActivity.KEY_MOVIE_RESPONSE);
 
@@ -66,16 +66,16 @@ public class MovieDetailsActivity extends AppCompatActivity {
         txtReleaseDate.setText(CommonUtils.formatDate("yyyy-mm-dd", "MMM dd, yyyy", movie.getReleaseDate()));
         txtOverview.setText(movie.getOverview());
 
-        /**
-         * set collapsible toolbar and title expanded text color
+        /*
+          set collapsible toolbar and title expanded text color
          */
         collapsingToolbarLayout.setTitle(movie.getOriginalTitle());
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.colorTransparent));
 
-        /**
-         * set backdrop image using picasso
-         * and set callback inorder to get access to the primary colors in an image,
-         * as well as the corresponding colors for overlaid text
+        /*
+          set backdrop image using picasso
+          and set callback inorder to get access to the primary colors in an image,
+          as well as the corresponding colors for overlaid text
          */
         Picasso.with(this)
                 .load(movie.getBackdropPath())
@@ -97,8 +97,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     }
                 });
 
-        /**
-         * set movie poster image
+        /*
+          set movie poster image
          */
         Picasso.with(this)
                 .load(movie.getPosterPath())
