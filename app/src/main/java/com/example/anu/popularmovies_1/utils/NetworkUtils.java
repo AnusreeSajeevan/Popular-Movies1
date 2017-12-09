@@ -45,8 +45,7 @@ public class NetworkUtils {
         Uri uri = Uri.parse(baseUrl).buildUpon()
                 .appendQueryParameter(MovieDBUtils.PARAM_API_KEY, MovieDBUtils.API_KEY)
                 .build();
-        URL url = new URL(uri.toString());
-        return url;
+        return new URL(uri.toString());
     }
 
     /**

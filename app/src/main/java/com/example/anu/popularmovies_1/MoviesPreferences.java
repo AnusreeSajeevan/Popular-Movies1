@@ -34,8 +34,7 @@ public class MoviesPreferences {
     public static String getUserPreferredSortByValue(Context context){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String preferenceKey = context.getResources().getString(R.string.pref_sortby_key);
-        String defPreferenceValue = DEFAULT_SORT_BY_VALUE;
-        return sharedPreferences.getString(preferenceKey, defPreferenceValue);
+        return sharedPreferences.getString(preferenceKey, DEFAULT_SORT_BY_VALUE);
     }
 
 }

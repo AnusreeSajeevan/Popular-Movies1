@@ -17,8 +17,7 @@ public class MoviesJsonUtils {
      * @throws JSONException
      */
     public static JSONObject getJSONObjectFromResponse(String response) throws JSONException {
-        JSONObject jsonObject = new JSONObject(response);
-        return  jsonObject;
+        return new JSONObject(response);
     }
 
 }

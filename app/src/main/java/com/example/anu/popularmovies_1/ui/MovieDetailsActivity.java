@@ -116,8 +116,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
      * @return generated bitmap
      */
     public static Bitmap getBitmapFromImage(ImageView imgBackdrop) {
-        Bitmap bitmap = ((BitmapDrawable) imgBackdrop.getDrawable()).getBitmap();
-        return bitmap;
+       return ((BitmapDrawable) imgBackdrop.getDrawable()).getBitmap();
     }
 
     /**
