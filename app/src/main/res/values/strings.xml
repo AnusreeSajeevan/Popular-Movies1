@@ -3,7 +3,7 @@
     <string name="no_connectivity">Network connection is not available! \nSwipe down to refresh</string>
     <string name="err_msg">Something went wrong! \nSwipe down to refresh</string>
 
-    <string name="default_message">Fetching movies...\nPlease wait...</string>
+    <string name="default_message">Fetching movies&#8230;\nPlease wait&#8230;</string>
     <string name="rating_hint">User\'s rating</string>
 
     <!--  used by preferences -->
